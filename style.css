@@ -1,0 +1,59 @@
+<!-- CSS Styles -->
+<style>
+  /* Keep this CSS code for font quality */
+  .mbm-ex, .mbm-ex-div { mix-blend-mode: exclusion; }
+  html, body { overscroll-behavior: none; }
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body::-webkit-scrollbar { width: 0 !important; }
+  body { overflow: -moz-scrollbars-none; -ms-overflow-style: none; }
+  .overlay { pointer-events: none; }
+  .content-wrapper.second { position: fixed; left: 0%; top: 0%; right: 0%; bottom: auto; pointer-events: none; z-index: 3; }
+  body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow-y: scroll; overflow-x: hidden; }
+  ::-webkit-scrollbar { width: 0px; }
+  html.lenis { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto; }
+  .mf-cursor-text { font-weight: 500; color: #e1f371; }
+  .mf-cursor.-text:before { opacity: 1; }
+  .mf-cursor:before { background: transparent; backdrop-filter: blur(50px); filter: brightness(200%); }
+  .split-text { overflow: hidden !important; }
+  .line-animation { overflow: hidden !important; }
+  [js-line-animation] { visibility: hidden; }
+  .w--editor [js-line-animation] { visibility: visible; }
+  [js-line-animation] .line { overflow: hidden; }
+  .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+  .lenis.lenis-stopped { overflow: hidden; }
+  .hero_sub-text-wrap .line { overflow: hidden; }
+  .hero_heading-wrapper .line { overflow: hidden; }
+</style>
+
+<!-- External CSS Links -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
+<link rel="stylesheet" href="https://unpkg.com/mouse-follower@1/dist/mouse-follower.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.4/swiper-bundle.css">
+
+<!-- JavaScript Libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.0/js.cookie.min.js"></script>
+
+<!-- JavaScript Code -->
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    const pageWrapper = document.querySelector(".page-wrapper");
+    const loadingWrapper = document.querySelector('.page-loader_component');
+    const seenAnimation = Cookies.get('seenAnimation');
+    if (!seenAnimation) {
+      loadingWrapper.style.display = "flex";
+      setTimeout(() => {
+        pageWrapper.style.display = "block";
+      }, 3000);
+      Cookies.set('seenAnimation', 1, { expires: 1 });
+    } else {
+      loadingWrapper.style.visibility = "hidden";
+      pageWrapper.style.display = "block";
+    }
+  });
+
+  // Remove Cookie
+  $('.clear-cookie').click(() => {
+    Cookies.remove('seenAnimation');
+  });
+</script>
